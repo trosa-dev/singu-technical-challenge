@@ -1,21 +1,21 @@
-#!/bin/bash
-
 # Define colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo  "${GREEN}Running Test...${NC}"
-npx jest
-echo  "${GREEN}Test completed.${NC}"
+npx jest --coverage
+if [ $? -ne 0 ]; then
+  echo "${RED}Test failed. Coverage below Threshold %.${NC}"
+  exit 1
+fi
+echo  "${GREEN}Test completed with coverage >= Threshold %.${NC}"
 
 echo  "${GREEN}Running ESLint...${NC}"
-npx eslint --fix '**/*.{js,ts}'
-echo  "${GREEN}ESLint completed.${NC}"
+npx eslint '**/*.{js,ts}' || { echo "${RED}ESLint failed.${NC}"; exit 1; }
 
 echo  "${GREEN}Running Prettier...${NC}"
-npx prettier --write '**/*.{js,ts}'
-echo  "${GREEN}Prettier completed.${NC}"
+npx prettier --check '**/*.{js,ts}' || { echo "${RED}Prettier failed.${NC}"; exit 1; }
 
 echo  "${GREEN}Adding fixed files to the commit...${NC}"
 git diff --name-only --cached --relative | grep '\.js\|\.ts$' | xargs -r git add
