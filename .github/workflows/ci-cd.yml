@@ -13,24 +13,24 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "20.16.0"
 
       - name: Install dependencies
         run: npm install
 
-      - name: Lint TypeScript files
-        run: npx eslint --fix
+      - name: Lint TypeScript Code
+        run: npx eslint .
 
-      - name: Format TypeScript files
-        run: npx prettier --write "**/*.{ts,tsx}"
+      - name: Check TypeScript Formatting
+        run: npx prettier --check "**/*.{ts,tsx}"
 
       - name: Build TypeScript
         run: npm run build
 
-      - name: Test
+      - name: Run Tests
         run: npm test

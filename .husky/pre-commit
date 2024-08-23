@@ -2,23 +2,32 @@
 
 # Define colors
 GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-echo  "${GREEN}Running Test...${NC}"
-npx jest
-echo  "${GREEN}Test completed.${NC}"
+echo "${YELLOW}Running Jest tests...${NC}"
+npx jest --coverage
+if [ $? -ne 0 ]; then
+  echo "${RED}Test failed. Coverage below Threshold %.${NC}"
+  exit 1
+fi
+echo "${GREEN}Jest tests completed with coverage >= Threshold %.${NC}"
 
-echo  "${GREEN}Running ESLint...${NC}"
-npx eslint --fix '**/*.{js,ts}'
-echo  "${GREEN}ESLint completed.${NC}"
+echo "${YELLOW}Running ESLint checks...${NC}"
+npx eslint '**/*.{js,ts}'
+if [ $? -ne 0 ]; then
+  echo "${RED}ESLint found issues. Please fix the linting errors and try again.${NC}"
+  exit 1
+fi
+echo "${GREEN}ESLint checks completed successfully.${NC}"
 
-echo  "${GREEN}Running Prettier...${NC}"
-npx prettier --write '**/*.{js,ts}'
-echo  "${GREEN}Prettier completed.${NC}"
+echo "${YELLOW}Running Prettier formatting check...${NC}"
+npx prettier --check '**/*.{js,ts}'
+if [ $? -ne 0 ]; then
+  echo "${RED}Prettier check failed. Please format your code and try again.${NC}"
+  exit 1
+fi
+echo "${GREEN}Prettier formatting check completed successfully.${NC}"
 
-echo  "${GREEN}Adding fixed files to the commit...${NC}"
-git diff --name-only --cached --relative | grep '\.js\|\.ts$' | xargs -r git add
-echo  "${GREEN}Files added successfully.${NC}"
-
-echo  "${GREEN}Pre-commit hook completed successfully.${NC}"
+echo "${GREEN}Pre-commit hook completed successfully.${NC}"

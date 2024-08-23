@@ -6,3 +6,6 @@ dist/
 
 # Environment variable file (contains sensitive information)
 .env
+
+# Test coverage reports
+coverage/

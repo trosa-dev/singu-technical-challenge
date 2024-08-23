@@ -1,14 +1,15 @@
-const express = require("express");
+import express from "express";
 
-const app = express();
+export const app = express();
 app.use(express.json());
+const port = 3000;
 
-const pedidos: any = [];
+export const pedidos: any = [];
 
 app.post("/pedidos", (req: any, res: any) => {
   const pedido = {
     id: Date.now().toString(),
-    itens: req.body.itens,
+    items: req.body.items,
     status: "pendente",
   };
   pedidos.push(pedido);
@@ -29,8 +30,8 @@ app.put("/pedidos/:id/status", (req: any, res: any) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
-
-module.exports = app;
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}
