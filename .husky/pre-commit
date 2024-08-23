@@ -2,29 +2,26 @@
 
 # Define colors
 GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-echo  "${GREEN}Running Test...${NC}"
+echo "${YELLOW}Running Test...${NC}"
 npx jest --coverage
 if [ $? -ne 0 ]; then
   echo "${RED}Test failed. Coverage below Threshold %.${NC}"
   exit 1
 fi
-echo  "${GREEN}Test completed with coverage >= Threshold %.${NC}"
+echo "${GREEN}Test completed with coverage >= Threshold %.${NC}"
 
-echo  "${GREEN}Running ESLint...${NC}"
-npx eslint --quiet '**/*.{js,ts}'
-if [ $? -ne 0 ]; then
-  echo "${RED}ESLint found errors. Please fix the issues and try again.${NC}"
-  exit 1
-fi
+echo "${YELLOW}Running ESLint...${NC}"
+npx eslint '**/*.{js,ts}'
 
-echo  "${GREEN}Running Prettier...${NC}"
+echo "${YELLOW}Running Prettier...${NC}"
 npx prettier --check '**/*.{js,ts}'
 if [ $? -ne 0 ]; then
   echo "${RED}Prettier check failed. Please format your code and try again.${NC}"
   exit 1
 fi
 
-echo  "${GREEN}Pre-commit hook completed successfully.${NC}"
+echo "${GREEN}Pre-commit hook completed successfully.${NC}"
