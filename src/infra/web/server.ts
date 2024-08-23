@@ -1,8 +1,8 @@
 import express from "express";
+import { PORT } from "../environment";
 
 export const app = express();
 app.use(express.json());
-const port = 3000;
 
 export const pedidos: any = [];
 
@@ -31,7 +31,7 @@ app.put("/pedidos/:id/status", (req: any, res: any) => {
 });
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
 }
