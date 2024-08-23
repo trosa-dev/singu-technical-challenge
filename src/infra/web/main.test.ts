@@ -1,5 +1,5 @@
-import { app } from "./main";
 import request from "supertest";
+import { app } from "./server";
 
 describe("Orders API", () => {
   it("should create a new order", async () => {

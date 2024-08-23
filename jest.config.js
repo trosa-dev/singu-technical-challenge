@@ -4,8 +4,6 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": ["ts-jest", {}],
   },
-  testPathIgnorePatterns: ["/dist/"],
-
   coverageThreshold: {
     global: {
       branches: 80,
@@ -13,11 +11,17 @@ module.exports = {
       lines: 80,
       statements: 80,
     },
-    "./src/main.ts": {
+    "./src/infra/web/server.ts": {
       branches: 50,
       functions: 50,
       lines: 50,
       statements: 50,
     },
   },
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/infra/environment.ts",
+    "!**/node_modules/**",
+    "!**/dist/**",
+  ],
 };
