@@ -1,4 +1,3 @@
-/** @type {import('eslint').Linter.Config} */
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -8,19 +7,22 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/stylistic",
     "plugin:prettier/recommended",
   ],
   rules: {
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": ["warn"],
+    "@typescript-eslint/no-require-imports": ["warn"],
+    "prefer-const": ["warn"],
     "prettier/prettier": [
       "error",
       {
         semi: true,
-        singleQuote: true,
+        singleQuote: false,
         trailingComma: "es5",
         printWidth: 80,
         tabWidth: 2,
+        useTabs: false,
       },
     ],
   },
