@@ -1,1 +1,8 @@
-node_modules
+# Directory where Node.js dependencies are installed
+node_modules/
+
+# Directory where compiled TypeScript files are output
+dist/
+
+# Environment variable file (contains sensitive information)
+.env
