@@ -23,14 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Lint TypeScript files
+      - name: Lint TypeScript Code
         run: npx eslint .
 
-      - name: Format TypeScript files
+      - name: Check TypeScript Formatting
         run: npx prettier --check "**/*.{ts,tsx}"
 
       - name: Build TypeScript
         run: npm run build
 
-      - name: Test
+      - name: Run Tests
         run: npm test
