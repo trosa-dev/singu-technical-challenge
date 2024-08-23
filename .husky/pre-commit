@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Define colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -12,13 +14,17 @@ fi
 echo  "${GREEN}Test completed with coverage >= Threshold %.${NC}"
 
 echo  "${GREEN}Running ESLint...${NC}"
-npx eslint '**/*.{js,ts}' || { echo "${RED}ESLint failed.${NC}"; exit 1; }
+npx eslint --quiet '**/*.{js,ts}'
+if [ $? -ne 0 ]; then
+  echo "${RED}ESLint found errors. Please fix the issues and try again.${NC}"
+  exit 1
+fi
 
 echo  "${GREEN}Running Prettier...${NC}"
-npx prettier --check '**/*.{js,ts}' || { echo "${RED}Prettier failed.${NC}"; exit 1; }
-
-echo  "${GREEN}Adding fixed files to the commit...${NC}"
-git diff --name-only --cached --relative | grep '\.js\|\.ts$' | xargs -r git add
-echo  "${GREEN}Files added successfully.${NC}"
+npx prettier --check '**/*.{js,ts}'
+if [ $? -ne 0 ]; then
+  echo "${RED}Prettier check failed. Please format your code and try again.${NC}"
+  exit 1
+fi
 
 echo  "${GREEN}Pre-commit hook completed successfully.${NC}"
