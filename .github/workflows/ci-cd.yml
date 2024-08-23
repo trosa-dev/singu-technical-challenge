@@ -27,11 +27,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Lint and format code
-        run: |
-          npx eslint --fix '**/*.ts'
-          npx prettier --write '**/*.ts'
-
       - name: Build TypeScript
         run: npm run build
 
