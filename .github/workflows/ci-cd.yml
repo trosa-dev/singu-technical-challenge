@@ -28,7 +28,9 @@ jobs:
         run: npm install
 
       - name: Lint and format code
-        run: npm run lint-staged
+        run: |
+          npx eslint --fix '**/*.ts'
+          npx prettier --write '**/*.ts'
 
       - name: Build TypeScript
         run: npm run build
