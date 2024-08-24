@@ -1,28 +1,32 @@
 import { Request, Response } from "express";
 import { orders } from "../../config/expressApp";
+import { OrderStatus } from "../../../domain/entities/order/enums/order-status.enum";
+import HttpStatus from "../../../shared/enums/httpStatus";
 
 class OrdersController {
   createOrder(req: Request, res: Response): Response {
-    const pedido = {
+    const order = {
       id: Date.now().toString(),
       items: req.body.items,
-      status: "pendente",
+      status: OrderStatus.PENDING,
     };
-    orders.push(pedido);
-    return res.status(201).send(pedido);
+    orders.push(order);
+    return res.status(HttpStatus.CREATED).send(order);
   }
 
   getAllOrders(req: Request, res: Response): Response {
-    return res.status(200).send(orders);
+    return res.status(HttpStatus.OK).send(orders);
   }
 
   updateOrderStatus(req: Request, res: Response): Response {
     const pedido = orders.find((p: any) => p.id === req.params.id);
     if (pedido) {
       pedido.status = req.body.status;
-      return res.status(200).send(pedido);
+      return res.status(HttpStatus.OK).send(pedido);
     } else {
-      return res.status(404).send({ message: "Pedido não encontrado" });
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .send({ message: "Pedido não encontrado" });
     }
   }
 }
