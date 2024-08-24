@@ -1,6 +1,6 @@
 import express from "express";
 import { PORT } from "../environment";
-import { router } from "../http/routes";
+import { ordersRouter } from "../http/routes/order.routes";
 
 // Initialize the Express application
 export const app = express();
@@ -9,7 +9,7 @@ export const app = express();
 app.use(express.json());
 
 // Routes
-app.use("/orders", router);
+app.use("/orders", ordersRouter);
 
 // Initialize an empty array for orders
 export const orders: any[] = [];
