@@ -18,12 +18,15 @@ export class MockOrderRepository implements OrderRepository {
     return this.orders.find((order) => order.id === id) || null;
   }
 
-  async updateStatus(id: string, newStatus: OrderStatus): Promise<Order> {
+  async updateStatus(
+    id: string,
+    newStatus: OrderStatus
+  ): Promise<Order | null> {
     const index = this.orders.findIndex((o) => o.id === id);
     if (index !== -1) {
       this.orders[index].status = newStatus;
       return this.orders[index];
     }
-    throw new Error("Order not found");
+    return null;
   }
 }
