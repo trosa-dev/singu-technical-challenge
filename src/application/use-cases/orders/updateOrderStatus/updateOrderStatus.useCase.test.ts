@@ -32,20 +32,26 @@ describe("UpdateOrderStatusUseCase", () => {
   });
 
   it("should throw an error for invalid status", async () => {
-    await expect(
-      updateOrderStatusUseCase.execute("1", "INVALID_STATUS")
-    ).rejects.toThrow("Invalid status: INVALID_STATUS");
+    try {
+      await updateOrderStatusUseCase.execute("1", "INVALID_STATUS");
+
+      fail("Expected an error to be thrown");
+    } catch (error) {
+      expect(error).toBeInstanceOf(AppError);
+      expect((error as AppError).message).toBe(
+        "Invalid status: INVALID_STATUS"
+      );
+    }
   });
 
   it("should throw AppError with 'Order does not exist' message when order does not exist", async () => {
-    const promise = updateOrderStatusUseCase.execute(
-      "INVALID_ID",
-      OrderStatus.READY
-    );
+    try {
+      await updateOrderStatusUseCase.execute("INVALID_ID", OrderStatus.READY);
 
-    await Promise.all([
-      expect(promise).rejects.toThrow(AppError),
-      expect(promise).rejects.toThrow("Order does not exist"),
-    ]);
+      fail("Expected an error to be thrown");
+    } catch (error) {
+      expect(error).toBeInstanceOf(AppError);
+      expect((error as AppError).message).toBe("Order does not exist");
+    }
   });
 });
