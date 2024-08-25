@@ -1,10 +1,10 @@
-import { GetAllOrdersUseCase } from "./../../../application/use-cases/getAllOrders.useCase";
 import { NextFunction, Request, Response } from "express";
 import HttpStatus from "../../../shared/enums/httpStatus";
 import { InMemoryOrderRepository } from "../../database/inMemoryOrderRepository";
-import { CreateOrderUseCase } from "../../../application/use-cases/createOrderUseCase";
-import { UpdateOrderStatusUseCase } from "../../../application/use-cases/updateOrderStatus.useCase";
 import { AppError } from "../../../application/errors/appError";
+import { CreateOrderUseCase } from "../../../application/use-cases/orders/createOrder/createOrder.useCase";
+import { GetAllOrdersUseCase } from "../../../application/use-cases/orders/getAllOrders/getAllOrders.useCase";
+import { UpdateOrderStatusUseCase } from "../../../application/use-cases/orders/updateOrderStatus/updateOrderStatus.useCase";
 
 const orderRepository = new InMemoryOrderRepository();
 
