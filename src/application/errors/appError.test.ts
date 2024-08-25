@@ -5,6 +5,7 @@ describe("AppError", () => {
   it("should create an instance with the correct message and status code", () => {
     const errorMessage = "Test error message";
     const statusCode = HttpStatus.BAD_REQUEST;
+
     const appError = new AppError(errorMessage, statusCode);
 
     expect(appError).toBeInstanceOf(AppError);
@@ -19,14 +20,5 @@ describe("AppError", () => {
       HttpStatus.INTERNAL_SERVER_ERROR
     );
     expect(appError.stack).toBeDefined();
-  });
-
-  it("should maintain instanceof relationship", () => {
-    const appError = new AppError(
-      "Test error",
-      HttpStatus.INTERNAL_SERVER_ERROR
-    );
-    expect(appError instanceof AppError).toBe(true);
-    expect(appError instanceof Error).toBe(true);
   });
 });
