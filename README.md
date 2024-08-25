@@ -23,14 +23,9 @@ The challenge is designed to showcase proficiency in:
 2. [First Steps](#first-step)
 3. [Technologies Used](#technologies-used)
 4. [Project Structure](#project-structure)
-
-5. [Development Local](#development-local)
-   - [Node Env](#node-environment-node-18)
-6. [Tests](#tests)
-   - [Unit Test](#unit-test)
-   - [E2E Test](#e2e-test)
-7. [CI / CD](#ci--cd)
-8. [API Docs](#api-docs)
+5. [Tests](#tests)
+6. [CI / CD](#ci--cd)
+7. [API Docs](#api-docs)
 
 ## Prerequisites
 
@@ -40,6 +35,19 @@ This project requires the following to be set up and running:
 
 ## First Step
 
+1. Duplicate the [.env.example](./.env.example) file and rename it to `.env`. Update the settings or port 3000 will be used as the default.
+
+2. Install the project dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run development:
+   ```bash
+   npm run dev
+   ```
+
 ## Technologies Used
 
 > This template follows some clean architecture principles
@@ -47,9 +55,10 @@ This project requires the following to be set up and running:
 1. Node.js
 2. TypeScript
 3. Express
-4. Jest and Supertest (for testing)
-5. Eslint and Prettier (for code quality)
-6. Husky (for running tests and ESLint before commits)
+4. Swagger (for API documentation)
+5. Jest and Supertest (for testing)
+6. Eslint and Prettier (for code quality)
+7. Husky (for running tests and ESLint before commits)
 
 ## Project Structure
 
@@ -121,14 +130,6 @@ This project requires the following to be set up and running:
 └── tsconfig.json
 ```
 
-Duplicate the [.env.sample](./.env.example) file and rename it to .env. Update the settings or port 3000 will be used as the default.
-
-Run development:
-
-```bash
-npm run dev
-```
-
 ## Tests
 
 ```bash
@@ -141,3 +142,5 @@ This project includes a workflow to ensure build, test, and code quality.
 Make changes if necessary to this file [ci-cd.yml](./.github/workflows/ci-cd.yml).
 
 The workflow is triggered on pushes or merges to the main and dev branches.
+
+## API Docs
