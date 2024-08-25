@@ -5,11 +5,11 @@ import { Order, OrderItem } from "./order";
 describe("Order", () => {
   const id = Date.now().toString();
   const mockItems: OrderItem[] = [
-    { item: Item.BURGER, quantity: 2 },
-    { item: Item.SANDWICH, quantity: 1 },
+    { itemName: Item.BURGER, quantity: 2 },
+    { itemName: Item.SANDWICH, quantity: 1 },
   ];
 
-  const order = new Order(id, mockItems);
+  const order = new Order(mockItems, id);
 
   it("should create an order with the given id and items", () => {
     expect(order).toBeInstanceOf(Order);
