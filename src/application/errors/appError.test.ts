@@ -14,12 +14,18 @@ describe("AppError", () => {
   });
 
   it("should have a stack trace", () => {
-    const appError = new AppError("Test error", 500);
+    const appError = new AppError(
+      "Test error",
+      HttpStatus.INTERNAL_SERVER_ERROR
+    );
     expect(appError.stack).toBeDefined();
   });
 
   it("should maintain instanceof relationship", () => {
-    const appError = new AppError("Test error", 500);
+    const appError = new AppError(
+      "Test error",
+      HttpStatus.INTERNAL_SERVER_ERROR
+    );
     expect(appError instanceof AppError).toBe(true);
     expect(appError instanceof Error).toBe(true);
   });
