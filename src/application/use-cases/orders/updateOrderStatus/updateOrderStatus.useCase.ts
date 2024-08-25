@@ -18,7 +18,7 @@ export class UpdateOrderStatusUseCase {
     );
 
     if (updatedOrder === null) {
-      throw new AppError("Order não existe", HttpStatus.NOT_FOUND);
+      throw new AppError("Order does not exist", HttpStatus.NOT_FOUND);
     }
 
     return updatedOrder;
