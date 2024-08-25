@@ -14,7 +14,18 @@ export class CreateOrderUseCase {
       );
     }
 
-    const order = new Order(items, Date.now().toString());
+    const id = Date.now().toString();
+
+    const existingOrder = await this.orderRepository.findById(id);
+
+    if (existingOrder) {
+      throw new AppError(
+        "There is already an order with this id",
+        HttpStatus.BAD_REQUEST
+      );
+    }
+
+    const order = new Order(items, id);
     return this.orderRepository.create(order);
   }
 }
