@@ -1,9 +1,10 @@
+import HttpStatus from "../../shared/enums/httpStatus";
 import { AppError } from "./appError";
 
 describe("AppError", () => {
   it("should create an instance with the correct message and status code", () => {
     const errorMessage = "Test error message";
-    const statusCode = 400;
+    const statusCode = HttpStatus.BAD_REQUEST;
     const appError = new AppError(errorMessage, statusCode);
 
     expect(appError).toBeInstanceOf(AppError);
