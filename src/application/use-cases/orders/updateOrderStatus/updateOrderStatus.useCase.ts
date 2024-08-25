@@ -9,7 +9,10 @@ export class UpdateOrderStatusUseCase {
 
   async execute(id: string, newStatus: string): Promise<Order> {
     if (!Object.values(OrderStatus).includes(newStatus as OrderStatus)) {
-      throw new Error(`Invalid status: ${newStatus}`);
+      throw new AppError(
+        `Invalid status: ${newStatus}`,
+        HttpStatus.BAD_REQUEST
+      );
     }
 
     const updatedOrder = await this.orderRepository.updateStatus(
