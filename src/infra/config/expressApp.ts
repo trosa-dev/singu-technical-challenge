@@ -1,6 +1,7 @@
 import express from "express";
 import { PORT } from "../environment";
 import { ordersRouter } from "../http/routes/order.routes";
+import { errorHandler } from "../middlewares/errorHandler ";
 
 // Initialize the Express application
 export const app = express();
@@ -10,6 +11,9 @@ app.use(express.json());
 
 // Routes
 app.use("/orders", ordersRouter);
+
+// Middleware de tratamento de erros (deve vir após as rotas)
+app.use(errorHandler);
 
 // Initialize an empty array for orders
 export const orders: any[] = [];
