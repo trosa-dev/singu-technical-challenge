@@ -7,6 +7,7 @@
     "start": "node dist/src/infra/config/expressApp.js",
     "dev": "ts-node src/infra/config/expressApp.js",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "prepare": "husky"
   },
   "lint-staged": {

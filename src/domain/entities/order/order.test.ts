@@ -14,7 +14,7 @@ describe("Order", () => {
   it("should create an order with the given id and items", () => {
     expect(order).toBeInstanceOf(Order);
     expect(order.id).toBe(id);
-    expect(order.items).toEqual(mockItems);
+    expect(order.itens).toEqual(mockItems);
   });
 
   it("should update status correctly", () => {

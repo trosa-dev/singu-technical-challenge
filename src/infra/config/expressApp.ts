@@ -10,7 +10,7 @@ export const app = express();
 app.use(express.json());
 
 // Routes
-app.use("/orders", ordersRouter);
+app.use("/pedidos", ordersRouter);
 
 // Middleware de tratamento de erros (deve vir após as rotas)
 app.use(errorHandler);

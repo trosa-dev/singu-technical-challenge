@@ -14,7 +14,7 @@ const updateOrderStatusUseCase = new UpdateOrderStatusUseCase(orderRepository);
 
 export class OrdersController {
   async createOrder(req: Request, res: Response): Promise<Response> {
-    const order = await createOrderUseCase.execute(req.body.items);
+    const order = await createOrderUseCase.execute(req.body.itens);
     return res.status(HttpStatus.CREATED).send(order);
   }
 
@@ -26,7 +26,7 @@ export class OrdersController {
   async updateOrderStatus(req: Request, res: Response, next: NextFunction) {
     try {
       const id: string = req.params.id;
-      const newStatus: string = req.body.newStatus;
+      const newStatus: string = req.body.status;
 
       const updatedOrder = await updateOrderStatusUseCase.execute(
         id,

@@ -132,8 +132,16 @@ This project requires the following to be set up and running:
 
 ## Tests
 
+To run the tests, use the following command:
+
 ```bash
 npm run test
+```
+
+To run the tests with coverage, you can use the following command:
+
+```bash
+npm run test:coverage
 ```
 
 ## CI / CD

@@ -13,9 +13,9 @@ export class Order {
   public status: OrderStatus;
 
   constructor(
-    public items: OrderItem[],
+    public itens: OrderItem[],
     id: string = Date.now().toString(),
-    status: OrderStatus = OrderStatus.IN_PREPARATION
+    status: OrderStatus = OrderStatus.PENDING
   ) {
     this.id = id || crypto.randomUUID();
     this.status = status;
