@@ -1,7 +1,7 @@
-import { HttpStatus } from "./../../shared/enums/httpStatus";
-import { Order, OrderItem } from "../../domain/entities/order/order";
-import { OrderRepository } from "../../domain/repositories/orderRepository";
-import { AppError } from "../errors/appError";
+import { Order, OrderItem } from "../../../../domain/entities/order/order";
+import { OrderRepository } from "../../../../domain/repositories/orderRepository";
+import HttpStatus from "../../../../shared/enums/httpStatus";
+import { AppError } from "../../../errors/appError";
 
 export class CreateOrderUseCase {
   constructor(private orderRepository: OrderRepository) {}
