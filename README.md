@@ -155,3 +155,9 @@ Make changes if necessary to this file [ci-cd.yml](./.github/workflows/ci-cd.yml
 The workflow is triggered on pushes or merges to the main and dev branches.
 
 ## API Docs
+
+For detailed API documentation, including endpoint descriptions and usage examples, please refer to the Postman collection linked below:
+
+[API Documentation - Postman Collection](https://www.postman.com/blue-shadow-587025/workspace/singu-technical-challenge/collection/11943822-f7370f57-5e05-487e-8b03-3c8e423e66c3?action=share&creator=11943822&active-environment=11943822-649da25e-f797-4eef-973c-c803e35234a3)
+
+This collection provides comprehensive information about the available API endpoints, their parameters, request and response formats, and example usage.
