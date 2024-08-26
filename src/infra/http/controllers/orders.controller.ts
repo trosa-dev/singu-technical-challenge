@@ -5,6 +5,7 @@ import { AppError } from "../../../application/errors/appError";
 import { CreateOrderUseCase } from "../../../application/use-cases/orders/createOrder/createOrder.useCase";
 import { GetAllOrdersUseCase } from "../../../application/use-cases/orders/getAllOrders/getAllOrders.useCase";
 import { UpdateOrderStatusUseCase } from "../../../application/use-cases/orders/updateOrderStatus/updateOrderStatus.useCase";
+import { responseMessages } from "../../../constants/messages/responseMessages";
 
 const orderRepository = new InMemoryOrderRepository();
 
@@ -13,14 +14,34 @@ const getAllOrdersUseCase = new GetAllOrdersUseCase(orderRepository);
 const updateOrderStatusUseCase = new UpdateOrderStatusUseCase(orderRepository);
 
 export class OrdersController {
-  async createOrder(req: Request, res: Response): Promise<Response> {
-    const order = await createOrderUseCase.execute(req.body.itens);
-    return res.status(HttpStatus.CREATED).send(order);
+  async createOrder(req: Request, res: Response, next: NextFunction) {
+    try {
+      const order = await createOrderUseCase.execute(req.body.itens);
+      return res.status(HttpStatus.CREATED).send(order);
+    } catch (error) {
+      if (error instanceof AppError) {
+        next(error);
+      } else {
+        res
+          .status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .json({ message: responseMessages.ERROR.INTERNAL_SERVER_ERROR });
+      }
+    }
   }
 
-  async getAllOrders(req: Request, res: Response): Promise<Response> {
-    const orders = await getAllOrdersUseCase.execute();
-    return res.status(HttpStatus.OK).send(orders);
+  async getAllOrders(req: Request, res: Response, next: NextFunction) {
+    try {
+      const orders = await getAllOrdersUseCase.execute();
+      return res.status(HttpStatus.OK).send(orders);
+    } catch (error) {
+      if (error instanceof AppError) {
+        next(error);
+      } else {
+        res
+          .status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .json({ message: responseMessages.ERROR.INTERNAL_SERVER_ERROR });
+      }
+    }
   }
 
   async updateOrderStatus(req: Request, res: Response, next: NextFunction) {
@@ -37,7 +58,9 @@ export class OrdersController {
       if (error instanceof AppError) {
         next(error);
       } else {
-        res.status(500).json({ message: "Internal Server Error" });
+        res
+          .status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .json({ message: responseMessages.ERROR.INTERNAL_SERVER_ERROR });
       }
     }
   }
