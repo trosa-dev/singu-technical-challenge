@@ -17,6 +17,13 @@ The challenge is designed to showcase proficiency in:
 - Implementation of Design Patterns
 - Adherence to SOLID Principles
 
+## Design Choices and Considerations
+
+- Enum Value Assignment: The approach of assigning a Portuguese value to the enum items doesn't align with future i18n (internationalization) concepts. However, this was a deliberate simplification made for the technical test, with full awareness of its implications.
+- Test Placement Strategy: The decision to place tests alongside the classes they are testing has both pros and cons. I consciously chose this strategy for this project, but I am aware that there are alternative approaches to test organization.
+- Validation of Order Items: There is no validation for the fields of the items when adding an item to an order. Currently, it is possible to add an item without a name or quantity. This was intentional, and I wanted to highlight this in the documentation as a design choice for this test.
+- Error Handling: The error handling for invalid API calls is also not implemented. Currently, it returns the default Express error. This was intentional for this test, but in a real project, proper error handling would need to be implemented. This should be noted in the documentation.
+
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
@@ -55,10 +62,9 @@ This project requires the following to be set up and running:
 1. Node.js
 2. TypeScript
 3. Express
-4. Swagger (for API documentation)
-5. Jest and Supertest (for testing)
-6. Eslint and Prettier (for code quality)
-7. Husky (for running tests and ESLint before commits)
+4. Jest and Supertest (for testing)
+5. Eslint and Prettier (for code quality)
+6. Husky (for running tests and ESLint before commits)
 
 ## Project Structure
 
