@@ -4,6 +4,7 @@ import { MockOrderRepository } from "../../../../../tests/mocks/mockOrderReposit
 import { CreateOrderUseCase } from "../createOrder/createOrder.useCase";
 import { UpdateOrderStatusUseCase } from "./updateOrderStatus.useCase";
 import { Item } from "../../../../domain/entities/order/enums/item.enum";
+import { responseMessages } from "../../../../constants/messages/responseMessages";
 
 describe("UpdateOrderStatusUseCase", () => {
   let mockOrderRepository: MockOrderRepository;
@@ -39,7 +40,7 @@ describe("UpdateOrderStatusUseCase", () => {
     } catch (error) {
       expect(error).toBeInstanceOf(AppError);
       expect((error as AppError).message).toBe(
-        "Invalid status: INVALID_STATUS"
+        responseMessages.ERROR.INVALID_ORDER_STATUS
       );
     }
   });
@@ -51,7 +52,9 @@ describe("UpdateOrderStatusUseCase", () => {
       fail("Expected an error to be thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(AppError);
-      expect((error as AppError).message).toBe("Order does not exist");
+      expect((error as AppError).message).toBe(
+        responseMessages.ERROR.ORDER_NOT_FOUND
+      );
     }
   });
 });
