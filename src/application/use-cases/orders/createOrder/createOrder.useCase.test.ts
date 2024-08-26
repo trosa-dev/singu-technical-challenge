@@ -1,4 +1,5 @@
 import { MockOrderRepository } from "../../../../../tests/mocks/mockOrderRepository";
+import { responseMessages } from "../../../../constants/messages/responseMessages";
 import { Item } from "../../../../domain/entities/order/enums/item.enum";
 import { AppError } from "../../../errors/appError";
 import { CreateOrderUseCase } from "./createOrder.useCase";
@@ -24,7 +25,7 @@ describe("CreateOrderUseCase", () => {
     } catch (error) {
       expect(error).toBeInstanceOf(AppError);
       expect((error as AppError).message).toBe(
-        "An order must have at least 1 item"
+        responseMessages.ERROR.NO_ITEMS_IN_ORDER
       );
     }
   });

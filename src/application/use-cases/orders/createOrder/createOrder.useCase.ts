@@ -1,3 +1,4 @@
+import { responseMessages } from "../../../../constants/messages/responseMessages";
 import { Order, OrderItem } from "../../../../domain/entities/order/order";
 import { OrderRepository } from "../../../../domain/repositories/orderRepository";
 import HttpStatus from "../../../../shared/enums/httpStatus";
@@ -9,7 +10,7 @@ export class CreateOrderUseCase {
   async execute(items: OrderItem[]): Promise<Order> {
     if (!items || items.length === 0) {
       throw new AppError(
-        "An order must have at least 1 item",
+        responseMessages.ERROR.NO_ITEMS_IN_ORDER,
         HttpStatus.BAD_REQUEST
       );
     }
@@ -20,7 +21,7 @@ export class CreateOrderUseCase {
 
     if (existingOrder) {
       throw new AppError(
-        "There is already an order with this id",
+        responseMessages.ERROR.ID_ALREADY_EXISTS,
         HttpStatus.BAD_REQUEST
       );
     }

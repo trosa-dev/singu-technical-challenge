@@ -3,6 +3,7 @@ import { app } from "../../src/infra/config/expressApp";
 import { OrderStatus } from "../../src/domain/entities/order/enums/order-status.enum";
 import { Item } from "../../src/domain/entities/order/enums/item.enum";
 import HttpStatus from "../../src/shared/enums/httpStatus";
+import { responseMessages } from "../../src/constants/messages/responseMessages";
 
 describe("Orders API", () => {
   const newOrder = {
@@ -49,6 +50,9 @@ describe("Orders API", () => {
       .send({ status: OrderStatus.READY });
 
     expect(response.status).toBe(HttpStatus.NOT_FOUND);
-    //expect(response.body).toHaveProperty("message", "Pedido não encontrado");
+    expect(response.body).toHaveProperty(
+      "message",
+      responseMessages.ERROR.ORDER_NOT_FOUND
+    );
   });
 });

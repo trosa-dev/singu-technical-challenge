@@ -85,6 +85,9 @@ This project requires the following to be set up and running:
 │   │           └── updateOrderStatus
 │   │               ├── updateOrderStatus.useCase.test.ts
 │   │               └── updateOrderStatus.useCase.ts
+│   ├── constants
+│   │   └── messages
+│   │       └── responseMessages.ts
 │   ├── domain
 │   │   └── entities
 │   │       ├── order
