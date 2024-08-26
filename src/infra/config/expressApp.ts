@@ -15,9 +15,6 @@ app.use("/pedidos", ordersRouter);
 // Middleware de tratamento de erros (deve vir após as rotas)
 app.use(errorHandler);
 
-// Initialize an empty array for orders
-export const orders: any[] = [];
-
 // Start the server if not in test environment
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {
