@@ -33,7 +33,7 @@ export class OrdersController {
         newStatus
       );
       return res.status(HttpStatus.OK).send(updatedOrder);
-    } catch (error: any) {
+    } catch (error) {
       if (error instanceof AppError) {
         next(error);
       } else {
